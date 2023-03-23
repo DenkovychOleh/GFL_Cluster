@@ -12,19 +12,19 @@ class ProxyNetworkConfigTest {
 
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         actualProxyNetworkConfig = new ProxyNetworkConfig(hostname, port);
         emptyProxyNetworkConfig = new ProxyNetworkConfig();
     }
 
     @Test
-    void testGetters() {
+    public void testGetters() {
         Assertions.assertEquals("hostname", actualProxyNetworkConfig.getHostname());
         Assertions.assertEquals(8080, actualProxyNetworkConfig.getPort());
     }
 
     @Test
-    void testSetters() {
+    public void testSetters() {
         emptyProxyNetworkConfig.setHostname("localhost");
         emptyProxyNetworkConfig.setPort(5151);
         Assertions.assertEquals("localhost", emptyProxyNetworkConfig.getHostname());
@@ -32,14 +32,14 @@ class ProxyNetworkConfigTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         emptyProxyNetworkConfig.setHostname("hostname");
         emptyProxyNetworkConfig.setPort(8080);
 
         Assertions.assertEquals(emptyProxyNetworkConfig, actualProxyNetworkConfig);
     }
     @Test
-    void testNotEquals(){
+    public void testNotEquals(){
         emptyProxyNetworkConfig.setHostname("hostname1");
         emptyProxyNetworkConfig.setPort(5555);
 
@@ -48,20 +48,20 @@ class ProxyNetworkConfigTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         ProxyNetworkConfig expectedProxyNetworkConfig = new ProxyNetworkConfig("hostname", 8080);
         Assertions.assertEquals(expectedProxyNetworkConfig.hashCode(), actualProxyNetworkConfig.hashCode());
     }
 
     @Test
-    void testProxyNetworkConfigNotNull(){
+    public void testProxyNetworkConfigNotNull(){
         ProxyNetworkConfig proxyNetworkConfig = new ProxyNetworkConfig("localhost", 5050);
         Assertions.assertNotNull(actualProxyNetworkConfig);
         Assertions.assertNotNull(proxyNetworkConfig);
     }
 
     @Test
-    void testNullValues(){
+    public void testNullValues(){
         Assertions.assertNull(emptyProxyNetworkConfig.getHostname());
         Assertions.assertNull(emptyProxyNetworkConfig.getPort());}
 }
