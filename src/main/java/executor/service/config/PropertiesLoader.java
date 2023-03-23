@@ -11,21 +11,17 @@ public class PropertiesLoader implements ConfigurationLoader {
 
     private static final String PROPERTIES_FILE_NAME = "webDriver.properties";
     private static volatile PropertiesLoader instance;
-    private final Configuration configuration;
+    private Configuration configuration;
 
     private PropertiesLoader() {
         try {
             configuration = configurationBuilder().getConfiguration();
         } catch (ConfigurationException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     public static PropertiesLoader getInstance() {
-        PropertiesLoader result = instance;
-        if (result != null) {
-            return result;
-        }
         synchronized (PropertiesLoader.class) {
             if (instance == null) {
                 instance = new PropertiesLoader();
@@ -40,9 +36,8 @@ public class PropertiesLoader implements ConfigurationLoader {
     }
 
     private FileBasedConfigurationBuilder<FileBasedConfiguration> configurationBuilder() {
-        Parameters parameters = new Parameters();
         return new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-                .configure(parameters.properties().setFileName(PROPERTIES_FILE_NAME));
+                .configure(new Parameters().properties().setFileName(PROPERTIES_FILE_NAME));
     }
 
 }
