@@ -46,7 +46,7 @@ public class ChromeDriverInitializer implements WebDriverInitializer {
         String userAgent = CONFIGURATION.getString("webdriver.config.userAgent");
         long pageLoadTimeout = CONFIGURATION.getLong("webdriver.config.pageLoadTimeout");
         long implicitlyWait = CONFIGURATION.getLong("webdriver.config.implicitlyWait");
-        options.addArguments(String.format("--user-agent=%s", userAgent), "--remote-allow-origins=*");
+        options.addArguments(String.format("--user-agent=%s", userAgent), "--remote-allow-origins=*", "--start-maximized");
         options.setPageLoadTimeout(Duration.ofMillis(pageLoadTimeout));
         options.setImplicitWaitTimeout(Duration.ofMillis(implicitlyWait));
         return options;
