@@ -45,7 +45,9 @@ class StepExecutionClickXpathTest {
 
     @AfterEach
     void tearDown() {
-        webDriver.quit();
+        if (webDriver != null) {
+            webDriver.quit();
+        }
     }
 
     @Test
@@ -114,6 +116,6 @@ class StepExecutionClickXpathTest {
     }
 
     boolean isActiveDriver() {
-        return file.exists();
+        return !file.exists();
     }
 }
