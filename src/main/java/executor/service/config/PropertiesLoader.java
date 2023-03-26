@@ -9,7 +9,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 
 public class PropertiesLoader implements ConfigurationLoader {
 
-    private static final String PROPERTIES_FILE_NAME = "webDriver.properties";
+    private static final String PROPERTIES_FILE_NAME = "application.properties";
     private static volatile PropertiesLoader instance;
     private Configuration configuration;
 
