@@ -26,7 +26,6 @@ class StepExecutionClickXpathTest {
     private Step notInitializedStep;
     private WebDriver webDriver;
     private WebDriver notInitializedWebDriver;
-    private static final boolean isActiveDriver = false;
 
     static {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
@@ -112,5 +111,9 @@ class StepExecutionClickXpathTest {
             WebElement element = notInitializedWebDriver.findElement(By.xpath(xPath));
             element.click();
         });
+    }
+
+    boolean isActiveDriver() {
+        return file.exists();
     }
 }
