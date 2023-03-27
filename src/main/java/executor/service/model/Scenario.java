@@ -7,7 +7,6 @@ public class Scenario {
     private String name;
     private String site;
     private List<Step> steps;
-
     public Scenario() { }
 
     public Scenario(String name, String site, List<Step> steps) {
