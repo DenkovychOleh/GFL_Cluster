@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
+import org.junitpioneer.jupiter.SetSystemProperty;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,11 +28,8 @@ class StepExecutionClickXpathTest {
     private WebDriver webDriver;
     private WebDriver notInitializedWebDriver;
 
-    static {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-    }
-
     @BeforeEach
+    @SetSystemProperty(key = "webdriver.chrome.driver", value = "src/main/resources/chromedriver.exe")
     void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
