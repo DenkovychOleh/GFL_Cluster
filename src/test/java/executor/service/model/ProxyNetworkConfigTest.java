@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ProxyNetworkConfigTest {
+public class ProxyNetworkConfigTest {
     private final String hostname = "hostname";
     private final Integer port = 8080;
     private ProxyNetworkConfig actualProxyNetworkConfig;

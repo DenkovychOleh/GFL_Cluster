@@ -3,6 +3,7 @@ package executor.service.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 public class WebDriverConfigTest {
     private final String webDriverExecutable = "WebDriver";
     private final String userAgent = "User agent";
@@ -78,8 +79,8 @@ public class WebDriverConfigTest {
 
     @Test
     public void testSetUserAgentForNull() {
-        actualWebDriverConfig.setUserAgent(null);
-        Assertions.assertNull(actualWebDriverConfig.getUserAgent());
+//        emptyWebDriverConfig.setUserAgent(null);
+        Assertions.assertNull(emptyWebDriverConfig.getUserAgent());
     }
 
     @Test

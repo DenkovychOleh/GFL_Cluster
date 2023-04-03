@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ProxyConfigHolderTest {
+public class ProxyConfigHolderTest {
     private final String hostname = "hostname";
     private final Integer port = 1234;
 

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-class ScenarioTest {
+public class ScenarioTest {
 
     private final String name = "name";
     private final String site = "site";
