@@ -18,4 +18,8 @@ public class StepExecutionClickCSS implements StepExecution {
         WebElement element = webDriver.findElement(By.cssSelector(cssSelector));
         element.click();
     }
+
+    public static StepExecution getInstance() {
+        return new StepExecutionClickCSS();
+    }
 }
