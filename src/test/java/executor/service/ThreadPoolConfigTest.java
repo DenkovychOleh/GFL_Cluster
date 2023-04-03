@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ThreadPoolConfigTest {
+public class ThreadPoolConfigTest {
 
     private final Integer corePoolSize = 1;
     private final Long keepAliveTime = 1L;
