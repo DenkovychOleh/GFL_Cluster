@@ -1,4 +1,4 @@
-package executor.service;
+package executor.service.model;
 
 import executor.service.model.Step;
 import org.junit.jupiter.api.Assertions;
