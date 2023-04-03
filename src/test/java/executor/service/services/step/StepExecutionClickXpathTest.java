@@ -17,7 +17,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StepExecutionClickXpathTest {
+public class StepExecutionClickXpathTest {
 
     private final String headerXpath = "//*[@id=\"header-blocks--2\"]/div[1]/div/div[3]/div/div/h3/span[1]";
     private final String wrongHeaderXpath = "//*[@id=\"header-blocks--2\"]/div[1]/div/div[3]/div/div/h3/span[2]";
@@ -30,7 +30,7 @@ class StepExecutionClickXpathTest {
 
     @BeforeEach
     @SetSystemProperty(key = "webdriver.chrome.driver", value = "src/main/resources/chromedriver.exe")
-    void setUp() {
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--headless=new");
@@ -42,21 +42,21 @@ class StepExecutionClickXpathTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         if (webDriver != null) {
             webDriver.quit();
         }
     }
 
     @Test
-    void testGetStepAction() {
+    public void testGetStepAction() {
         String actual = stepExecutionClickXpath.getStepAction();
         assertEquals(step.getAction(), actual);
     }
 
     @Test
     @DisabledIf("isActiveDriver")
-    void testStepSuccess() {
+    public void testStepSuccess() {
         webDriver.get("http://info.cern.ch/");
 
         String xPath = step.getValue();
@@ -70,7 +70,7 @@ class StepExecutionClickXpathTest {
 
     @Test
     @DisabledIf("isActiveDriver")
-    void testStepNotEquals() {
+    public void testStepNotEquals() {
         webDriver.get("http://info.cern.ch/");
 
         String xPath = step.getValue();
@@ -84,7 +84,7 @@ class StepExecutionClickXpathTest {
 
     @Test
     @DisabledIf("isActiveDriver")
-    void testStepTimeOut() {
+    public void testStepTimeOut() {
         assertTimeout(Duration.ofSeconds(10), () -> {
         webDriver.get("http://info.cern.ch/");
 
@@ -96,7 +96,7 @@ class StepExecutionClickXpathTest {
 
     @Test
     @DisabledIf("isActiveDriver")
-    void testStepNullPointerExceptionByStep() {
+    public void testStepNullPointerExceptionByStep() {
         assertThrows(NullPointerException.class, () -> {
             String xPath = notInitializedStep.getValue();
             WebElement element = webDriver.findElement(By.xpath(xPath));
@@ -105,7 +105,7 @@ class StepExecutionClickXpathTest {
     }
 
     @Test
-    void testStepNullPointerExceptionByWebDriver() {
+    public void testStepNullPointerExceptionByWebDriver() {
         assertThrows(NullPointerException.class, () -> {
             String xPath = step.getValue();
             WebElement element = notInitializedWebDriver.findElement(By.xpath(xPath));
@@ -113,7 +113,7 @@ class StepExecutionClickXpathTest {
         });
     }
 
-    boolean isActiveDriver() {
+    private boolean isActiveDriver() {
         return !file.exists();
     }
 }
