@@ -24,8 +24,8 @@ public class DIFactoryTest {
     public void setUp() {
         diFactory = DIFactory.init();
         steps.add(new Step("clickXpath", "Click first X path scenario..."));
-        steps.add(new Step("click", "Click first CSS scenario..."));
-        steps.add(new Step("click", "Click second CSS scenario..."));
+        steps.add(new Step("clickCSS", "Click first CSS scenario..."));
+        steps.add(new Step("clickCSS", "Click second CSS scenario..."));
         steps.add(new Step("clickXpath", "Click second X path scenario..."));
     }
 
@@ -37,8 +37,8 @@ public class DIFactoryTest {
     public void createDIStepExecutionList() {
         List<String> expected = new ArrayList<>();
         expected.add("clickXpath");
-        expected.add("click");
-        expected.add("click");
+        expected.add("clickCSS");
+        expected.add("clickCSS");
         expected.add("clickXpath");
         TypeReference<List<StepExecution>> stepExecution = new TypeReference<List<StepExecution>>() {};
         List<StepExecution> stepExecutions = diFactory.create(stepExecution);
@@ -60,7 +60,7 @@ public class DIFactoryTest {
 
         assertTrue(stepExecutionActual.getClass().isAssignableFrom(StepExecutionClickCSS.class));
         assertEquals(stepExecutionClickCSS.getClass().getSimpleName(), stepExecutionActual.getClass().getSimpleName());
-        assertEquals("click", stepAction);
+        assertEquals("clickCSS", stepAction);
     }
 
     @Test
