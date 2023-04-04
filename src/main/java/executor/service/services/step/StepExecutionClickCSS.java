@@ -9,7 +9,7 @@ public class StepExecutionClickCSS implements StepExecution {
 
     @Override
     public String getStepAction() {
-        return "click";
+        return "clickCSS";
     }
 
     @Override
