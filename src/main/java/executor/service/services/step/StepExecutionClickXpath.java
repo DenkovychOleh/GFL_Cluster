@@ -18,4 +18,8 @@ public class StepExecutionClickXpath implements StepExecution {
         WebElement element = webDriver.findElement(By.xpath(xPath));
         element.click();
     }
+
+    public static StepExecution getInstance() {
+        return new StepExecutionClickXpath();
+    }
 }
