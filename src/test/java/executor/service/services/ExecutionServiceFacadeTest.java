@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import static org.mockito.Mockito.*;
-
 class ExecutionServiceFacadeTest {
 
     private ExecutionServiceFacade executionServiceFacade;
