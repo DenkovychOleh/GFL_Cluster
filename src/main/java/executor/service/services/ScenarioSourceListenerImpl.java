@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import exceptions.EmptyFileException;
 import executor.service.model.Scenario;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +38,7 @@ public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
             e.printStackTrace();
         }
     }
+
 
     public String readFile() throws FileNotFoundException, EmptyFileException {
         Scanner scanner;
