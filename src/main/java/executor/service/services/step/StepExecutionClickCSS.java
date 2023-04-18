@@ -4,7 +4,10 @@ import executor.service.model.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StepExecutionClickCSS implements StepExecution {
 
     @Override

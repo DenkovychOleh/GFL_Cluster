@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.EmptyFileException;
 import executor.service.model.Scenario;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,13 +18,14 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
 
-    private String file;
-    private ScenarioExecutor scenarioExecutor;
-    private WebDriver webDriver;
+    private final String file;
+    private final ScenarioExecutor scenarioExecutor;
+    private final WebDriver webDriver;
 
-    public ScenarioSourceListenerImpl(String file, ScenarioExecutor scenarioExecutor, WebDriver webDriver) {
+    public ScenarioSourceListenerImpl(@Value("${path.to.scenario_source}") String file, ScenarioExecutor scenarioExecutor, @Value("${webdriver.config.executable}") WebDriver webDriver) {
         this.file = file;
         this.scenarioExecutor = scenarioExecutor;
         this.webDriver = webDriver;
