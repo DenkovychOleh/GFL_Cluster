@@ -2,9 +2,9 @@ package executor.service.services.step;
 
 import executor.service.model.Step;
 import org.openqa.selenium.WebDriver;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class StepExecutionSleep implements StepExecution{
     @Override
     public String getStepAction() {
