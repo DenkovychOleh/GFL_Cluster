@@ -6,9 +6,11 @@ import executor.service.services.step.StepExecutionClickCSS;
 import executor.service.services.step.StepExecutionClickXpath;
 import executor.service.services.step.StepExecutionSleep;
 import org.openqa.selenium.WebDriver;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ScenarioExecutorImpl implements ScenarioExecutor {
     private final StepExecutionClickCSS clickCSS;
     private final StepExecutionSleep sleep;
