@@ -3,16 +3,15 @@ package executor.service.services;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.Scenario;
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExecutionServiceFacade implements ExecutionService {
-    private final ScenarioExecutorImpl scenarioExecutor;
-    private final ScenarioSourceListenerImpl scenarioSourceListener;
+    private final ScenarioExecutor scenarioExecutor;
+    private final ScenarioSourceListener scenarioSourceListener;
     private final WebDriverInitializer webDriverInitializer;
-@Autowired
-    public ExecutionServiceFacade(ScenarioExecutorImpl scenarioExecutor, ScenarioSourceListenerImpl scenarioSourceListener, WebDriverInitializer webDriverInitializer) {
+
+    public ExecutionServiceFacade(ScenarioExecutor scenarioExecutor, ScenarioSourceListener scenarioSourceListener, WebDriverInitializer webDriverInitializer) {
         this.scenarioExecutor = scenarioExecutor;
         this.scenarioSourceListener = scenarioSourceListener;
         this.webDriverInitializer = webDriverInitializer;
@@ -26,4 +25,3 @@ public class ExecutionServiceFacade implements ExecutionService {
         webDriver.quit();
     }
 }
-
