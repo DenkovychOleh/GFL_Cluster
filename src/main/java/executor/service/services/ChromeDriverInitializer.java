@@ -8,9 +8,11 @@ import org.apache.commons.configuration2.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 
+@Service
 public class ChromeDriverInitializer implements WebDriverInitializer {
 
     private static final Configuration CONFIGURATION;
