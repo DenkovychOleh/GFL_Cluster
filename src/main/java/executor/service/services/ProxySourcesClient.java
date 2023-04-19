@@ -6,17 +6,18 @@ import com.google.common.io.Resources;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+@Service
 public class ProxySourcesClient implements ProxySources {
     private final ArrayList <ProxyConfigHolder> tmp = new ArrayList<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public ArrayList <ProxyConfigHolder> getProxy(String fileProxyCredentials, String fileProxyNetworkConfig) throws IOException {
-
         InputStream inputStreamProxyNetwork = Resources.getResource(fileProxyNetworkConfig).openStream();
         ArrayList<ProxyNetworkConfig> proxyNetworkConfigs = objectMapper.readValue(inputStreamProxyNetwork,
                 new TypeReference<ArrayList<ProxyNetworkConfig>>() {
