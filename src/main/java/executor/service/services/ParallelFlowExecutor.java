@@ -10,7 +10,6 @@ import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +21,6 @@ public class ParallelFlowExecutor {
     private final ExecutionService executionService;
     private final ThreadPoolExecutor threadPoolExecutor;
     private static  int proxyConfigHolderIndex = 0;
-    private static  int scenarioIndex = 0;
 
     public ParallelFlowExecutor(ScenarioSourceListenerImpl scenarioSourceListener,
                                 ProxySourcesClient proxySourcesClient,
@@ -56,6 +54,7 @@ public class ParallelFlowExecutor {
     }
 
     public void runThread() {
+        int scenarioIndex = 0;
         while (true) {
             Scenario scenario;
             try {
@@ -72,7 +71,6 @@ public class ParallelFlowExecutor {
 
     private void executeScenarioInThread(Scenario scenario) {
         ProxyConfigHolder proxyConfigHolder;
-
         try {
             proxyConfigHolder =  proxySourcesClient.getProxy("ProxyCredentials.json",
                     "ProxyNetworkConfig.json").get(proxyConfigHolderIndex);
