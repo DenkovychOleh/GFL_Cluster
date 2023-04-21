@@ -22,6 +22,8 @@ public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
     private final String file;
     private final ScenarioExecutor scenarioExecutor;
     private final WebDriver webDriver;
+    private Scenario scenario;
+    private List<Scenario> scenarioList;
 
     public ScenarioSourceListenerImpl(@Value("${path.to.scenario_source}") String file, ScenarioExecutor scenarioExecutor, WebDriver webDriver) {
         this.file = file;
@@ -29,12 +31,28 @@ public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
         this.webDriver = webDriver;
     }
 
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
+    }
+
+    public void setScenarioList(List<Scenario> scenarioList) {
+        this.scenarioList = scenarioList;
+    }
+
     @Override
     public void execute() {
         try {
-            List<Scenario> scenarioList = getScenarios();
-            for (Scenario scenario : scenarioList) {
+            if (scenario != null) {
                 scenarioExecutor.execute(scenario, webDriver);
+            } else if (scenarioList != null) {
+                for (Scenario scenario : scenarioList) {
+                    scenarioExecutor.execute(scenario, webDriver);
+                }
+            } else if (file.length() > 0) {
+                List<Scenario> scenarioList = getScenarios();
+                for (Scenario scenario : scenarioList) {
+                    scenarioExecutor.execute(scenario, webDriver);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,13 +62,12 @@ public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
 
     public String readFile() throws FileNotFoundException, EmptyFileException {
         Scanner scanner;
-        String result;
         InputStream in = this.getClass().getClassLoader().getResourceAsStream(file);
         if (in == null) {
             throw new FileNotFoundException("File not found: " + file);
         }
         scanner = new Scanner(in).useDelimiter("\\A");
-        result = scanner.hasNext() ? scanner.next() : "";
+        String result = scanner.hasNext() ? scanner.next() : "";
         if (result.isEmpty()) {
             throw new EmptyFileException("File is empty: " + file);
         }
