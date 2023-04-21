@@ -8,11 +8,12 @@ import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
+@Service
 public class ParallelFlowExecutor {
 
     private ThreadPoolConfig threadPoolConfig;
