@@ -8,13 +8,15 @@ import org.apache.commons.configuration2.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 
 @Service
-public class ChromeDriverInitializer implements WebDriverInitializer {
+public class ChromeDriverInitializer implements WebDriverInitializer, FactoryBean<WebDriver> {
 
+    private WebDriver webDriver;
     private static final Configuration CONFIGURATION;
 
     static {
@@ -24,8 +26,12 @@ public class ChromeDriverInitializer implements WebDriverInitializer {
 
     @Override
     public WebDriver create(ProxyConfigHolder ProxyConfigHolder) {
-        ChromeOptions options = createOptions(ProxyConfigHolder);
-        return new ChromeDriver(options);
+        if (webDriver == null) {
+            ChromeOptions options = createOptions(ProxyConfigHolder);
+            webDriver = new ChromeDriver(options);
+            return webDriver;
+        }
+        return webDriver;
     }
 
     private ChromeOptions createOptions(ProxyConfigHolder proxyConfigHolder) {
@@ -52,5 +58,18 @@ public class ChromeDriverInitializer implements WebDriverInitializer {
         options.setPageLoadTimeout(Duration.ofMillis(pageLoadTimeout));
         options.setImplicitWaitTimeout(Duration.ofMillis(implicitlyWait));
         return options;
+    }
+
+    @Override
+    public WebDriver getObject() {
+        if (webDriver == null) {
+            return create(new ProxyConfigHolder());
+        }
+        return webDriver;
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return WebDriver.class;
     }
 }

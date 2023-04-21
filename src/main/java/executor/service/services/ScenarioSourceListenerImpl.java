@@ -25,7 +25,7 @@ public class ScenarioSourceListenerImpl implements ScenarioSourceListener {
     private final ScenarioExecutor scenarioExecutor;
     private final WebDriver webDriver;
 
-    public ScenarioSourceListenerImpl(@Value("${path.to.scenario_source}") String file, ScenarioExecutor scenarioExecutor, @Value("${webdriver.config.executable}") WebDriver webDriver) {
+    public ScenarioSourceListenerImpl(@Value("${path.to.scenario_source}") String file, ScenarioExecutor scenarioExecutor, WebDriver webDriver) {
         this.file = file;
         this.scenarioExecutor = scenarioExecutor;
         this.webDriver = webDriver;
