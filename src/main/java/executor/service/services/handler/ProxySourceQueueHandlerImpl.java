@@ -2,6 +2,7 @@ package executor.service.services.handler;
 
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyNetworkConfig;
+import executor.service.services.validator.ProxyValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
