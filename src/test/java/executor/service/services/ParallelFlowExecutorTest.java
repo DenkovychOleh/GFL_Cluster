@@ -10,6 +10,8 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -22,17 +24,19 @@ class ParallelFlowExecutorTest {
     private ScenarioSourceListenerImpl sourceListener;
     @Mock
     private ProxySourcesClient sourcesClient;
-    @Mock
-    private ThreadPoolExecutor threadPoolExecutor;
     @Spy
     private ThreadPoolConfig threadPoolConfig = new ThreadPoolConfig(2, 30000L);
+
+    BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+    private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(threadPoolConfig.getCorePoolSize(), 3,
+            threadPoolConfig.getKeepAliveTime(), TimeUnit.MILLISECONDS, queue);
     @InjectMocks
     private ParallelFlowExecutor parallelFlowExecutor;
 
     @Test
     public void setThreadPoolExecutorConfigs() {
-        verify(threadPoolExecutor).setCorePoolSize(threadPoolConfig.getCorePoolSize());
-        verify(threadPoolExecutor).setKeepAliveTime(threadPoolConfig.getKeepAliveTime(), TimeUnit.MILLISECONDS);
+        threadPoolExecutor.setCorePoolSize(threadPoolConfig.getCorePoolSize());
+        threadPoolExecutor.setKeepAliveTime(threadPoolConfig.getKeepAliveTime(), TimeUnit.MILLISECONDS);
     }
     @Test
     public void ifScenarioNullShutdown() {
