@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/scenario")
 public class ScenarioSourceController {
 
-    private ScenarioSourceListener scenarioSourceListener;
+    private final ScenarioSourceListener scenarioSourceListener;
 
     public ScenarioSourceController(ScenarioSourceListener scenarioSourceListener) {
         this.scenarioSourceListener = scenarioSourceListener;
