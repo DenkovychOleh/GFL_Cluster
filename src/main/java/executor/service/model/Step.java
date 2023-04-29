@@ -1,9 +1,14 @@
 package executor.service.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 public class Step {
+
+    @NotEmpty(message = "action is required")
     private String action;
+
+    @NotEmpty(message = "value is required")
     private String value;
 
     public Step() {
@@ -46,8 +51,8 @@ public class Step {
     @Override
     public String toString() {
         return "Step{" +
-               "action='" + action + '\'' +
-               ", value='" + value + '\'' +
-               '}';
+                "action='" + action + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

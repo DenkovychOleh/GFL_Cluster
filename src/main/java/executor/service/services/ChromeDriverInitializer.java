@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.time.Duration;
 
 @Service
@@ -71,5 +73,10 @@ public class ChromeDriverInitializer implements WebDriverInitializer, FactoryBea
     @Override
     public Class<?> getObjectType() {
         return WebDriver.class;
+    }
+
+    @PreDestroy
+    public void driverQuit(){
+        webDriver.quit();
     }
 }
