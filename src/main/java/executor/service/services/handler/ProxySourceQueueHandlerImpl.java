@@ -1,6 +1,7 @@
 package executor.service.services.handler;
 
 import executor.service.model.ProxyConfigHolder;
+import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
 import executor.service.services.validator.ProxyValidationService;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,7 +59,13 @@ public class ProxySourceQueueHandlerImpl implements ProxySourceQueueHandler {
     public void removeInvalidProxy() {
         if (!isEmpty()) {
             proxyQueue.removeIf(proxyConfigHolder -> {
-                return proxyValidator.proxyValidate(proxyConfigHolder.getProxyNetworkConfig());
+                ProxyNetworkConfig networkConfig = proxyConfigHolder.getProxyNetworkConfig();
+                ProxyCredentials credentials = proxyConfigHolder.getProxyCredentials();
+                return networkConfig == null ||
+                        networkConfig.getHostname() == null ||
+                        networkConfig.getPort() == null ||
+                        credentials == null ||
+                        proxyValidator.proxyValidate(networkConfig);
             });
         }
     }
