@@ -2,7 +2,7 @@ package executor.service.services.handler;
 
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyNetworkConfig;
-import executor.service.services.validator.ProxyValidator;
+import executor.service.services.validator.ProxyValidationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,12 +16,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ProxySourceQueueHandlerImpl implements ProxySourceQueueHandler {
 
     private final Queue<ProxyConfigHolder> proxyQueue = new LinkedBlockingQueue<>();
-    private final ProxyValidator proxyValidator;
+    private final ProxyValidationService proxyValidator;
 
     @Value("${fixedRate}")
     private String fixedRate;
 
-    public ProxySourceQueueHandlerImpl(ProxyValidator proxyValidator) {
+    public ProxySourceQueueHandlerImpl(ProxyValidationService proxyValidator) {
         this.proxyValidator = proxyValidator;
     }
 
@@ -58,17 +58,8 @@ public class ProxySourceQueueHandlerImpl implements ProxySourceQueueHandler {
     public void removeInvalidProxy() {
         if (!isEmpty()) {
             proxyQueue.removeIf(proxyConfigHolder -> {
-                boolean proxyValid = proxyValidator.isValid(proxyConfigHolder);
-                boolean networkConfig = isValidNetworkConfig(proxyConfigHolder.getProxyNetworkConfig());
-                return !proxyValid || !networkConfig;
+                return proxyValidator.proxyValidate(proxyConfigHolder.getProxyNetworkConfig());
             });
         }
-    }
-
-
-    private boolean isValidNetworkConfig(ProxyNetworkConfig networkConfig) {
-        return networkConfig != null &&
-                networkConfig.getHostname() != null &&
-                networkConfig.getPort() != null;
     }
 }
