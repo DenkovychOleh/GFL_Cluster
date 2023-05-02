@@ -20,29 +20,26 @@ public class ProxySourceQueueHandlerImplTest {
     private ProxyValidationService proxyValidator;
 
     private ProxySourceQueueHandlerImpl proxySourceQueueHandler;
+    private ProxyConfigHolder proxyConfigHolder;
+
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         proxySourceQueueHandler = new ProxySourceQueueHandlerImpl(proxyValidator);
-    }
-
-    private ProxyConfigHolder createProxyConfigHolder() {
         ProxyNetworkConfig proxyNetworkConfig = new ProxyNetworkConfig("127.0.0.1", 8080);
         ProxyCredentials proxyCredentials = new ProxyCredentials("username", "password");
-        return new ProxyConfigHolder(proxyNetworkConfig, proxyCredentials);
+        proxyConfigHolder = new ProxyConfigHolder(proxyNetworkConfig, proxyCredentials);
     }
 
     @Test
     public void testAddProxy() {
-        ProxyConfigHolder proxyConfigHolder = createProxyConfigHolder();
         proxySourceQueueHandler.addProxy(proxyConfigHolder);
         assertEquals(1, proxySourceQueueHandler.size());
     }
 
     @Test
     public void testPollProxy() {
-        ProxyConfigHolder proxyConfigHolder = createProxyConfigHolder();
         proxySourceQueueHandler.addProxy(proxyConfigHolder);
         Optional<ProxyConfigHolder> polledProxy = proxySourceQueueHandler.pollProxy();
         assertTrue(polledProxy.isPresent());
@@ -52,7 +49,6 @@ public class ProxySourceQueueHandlerImplTest {
 
     @Test
     public void testPollAllProxy() {
-        ProxyConfigHolder proxyConfigHolder = createProxyConfigHolder();
         proxySourceQueueHandler.addProxy(proxyConfigHolder);
         Collection<ProxyConfigHolder> allProxies = proxySourceQueueHandler.pollAllProxy();
         assertEquals(1, allProxies.size());
@@ -62,31 +58,26 @@ public class ProxySourceQueueHandlerImplTest {
 
     @Test
     public void testSize() {
-        ProxyConfigHolder proxyConfigHolder1 = createProxyConfigHolder();
-        ProxyConfigHolder proxyConfigHolder2 = createProxyConfigHolder();
-        proxySourceQueueHandler.addProxy(proxyConfigHolder1, proxyConfigHolder2);
+        proxySourceQueueHandler.addProxy(proxyConfigHolder, proxyConfigHolder);
         assertEquals(2, proxySourceQueueHandler.size());
     }
 
     @Test
     public void testIsEmpty() {
         assertTrue(proxySourceQueueHandler.isEmpty());
-        ProxyConfigHolder proxyConfigHolder = createProxyConfigHolder();
         proxySourceQueueHandler.addProxy(proxyConfigHolder);
         assertFalse(proxySourceQueueHandler.isEmpty());
     }
 
     @Test
     public void testRemoveInvalidProxy() {
-        ProxyConfigHolder validProxy = createProxyConfigHolder();
-
         ProxyNetworkConfig proxyNetworkConfig2 = new ProxyNetworkConfig("127.0.0.1", 8080);
         ProxyCredentials proxyCredentials2 = null;
         ProxyConfigHolder invalidProxy = new ProxyConfigHolder(proxyNetworkConfig2, proxyCredentials2);
 
-        proxySourceQueueHandler.addProxy(validProxy, invalidProxy);
+        proxySourceQueueHandler.addProxy(proxyConfigHolder, invalidProxy);
         proxySourceQueueHandler.removeInvalidProxy();
         assertEquals(1, proxySourceQueueHandler.size());
-        assertEquals(validProxy, proxySourceQueueHandler.pollProxy().get());
+        assertEquals(proxyConfigHolder, proxySourceQueueHandler.pollProxy().get());
     }
 }
