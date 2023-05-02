@@ -77,7 +77,7 @@ public class ProxySourceQueueHandlerImplTest {
     }
 
     @Test
-    void testRemoveInvalidProxy() {
+    public void testRemoveInvalidProxy() {
         ProxyConfigHolder validProxy = createProxyConfigHolder();
 
         ProxyNetworkConfig proxyNetworkConfig2 = new ProxyNetworkConfig("127.0.0.1", 8080);
