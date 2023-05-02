@@ -69,7 +69,7 @@ public class ProxySourceQueueHandlerImplTest {
     }
 
     @Test
-    void testIsEmpty() {
+    public void testIsEmpty() {
         assertTrue(proxySourceQueueHandler.isEmpty());
         ProxyConfigHolder proxyConfigHolder = createProxyConfigHolder();
         proxySourceQueueHandler.addProxy(proxyConfigHolder);
