@@ -24,26 +24,26 @@ class ProxyValidationServiceTest {
 
     @BeforeEach
     void setUp() {
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("107.151.192.29", 45787),
-                new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("103.122.179.43", 45787),
-                new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("221.145.195.200", 80),
-                new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("175.9.237.225", 8964),
-                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("107.151.192.29", 45787),
+//                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("103.122.179.43", 45787),
+//                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("221.145.195.200", 80),
+//                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("175.9.237.225", 8964),
+//                new ProxyCredentials("user", "password")));
         proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("223.100.178.167", 9091),
                 new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("65.108.69.40", 10001),
-                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("65.108.69.40", 10001),
+//                new ProxyCredentials("user", "password")));
         proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("183.221.221.149", 9091),
                 new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("123.60.172.164", 7890),
-                new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("203.19.38.114", 1080),
-                new ProxyCredentials("user", "password")));
-        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("1.4.250.111", 8080),
-                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("123.60.172.164", 7890),
+//                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("203.19.38.114", 1080),
+//                new ProxyCredentials("user", "password")));
+//        proxyQueue.add(new ProxyConfigHolder(new ProxyNetworkConfig("1.4.250.111", 8080),
+//                new ProxyCredentials("user", "password")));
     }
 
     @Test
