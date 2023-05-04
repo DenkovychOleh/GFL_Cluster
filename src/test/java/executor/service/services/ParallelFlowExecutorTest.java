@@ -23,7 +23,7 @@ class ParallelFlowExecutorTest {
     @Mock
     private ScenarioSourceListenerImpl sourceListener;
     @Mock
-    private ProxySourcesClient sourcesClient;
+    private ProxySourcesClientImpl sourcesClient;
     @Spy
     private ThreadPoolConfig threadPoolConfig = new ThreadPoolConfig(2, 30000L);
 

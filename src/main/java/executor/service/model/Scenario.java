@@ -1,13 +1,23 @@
 package executor.service.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 
 public class Scenario {
+
     private String name;
+
+    @NotEmpty(message = "site is required")
     private String site;
+
+    @Valid
+    @NotEmpty(message = "steps are required")
     private List<Step> steps;
-    public Scenario() { }
+
+    public Scenario() {
+    }
 
     public Scenario(String name, String site, List<Step> steps) {
         this.name = name;

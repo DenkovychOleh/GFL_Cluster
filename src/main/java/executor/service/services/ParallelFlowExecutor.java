@@ -20,13 +20,13 @@ public class ParallelFlowExecutor {
 
     private ThreadPoolConfig threadPoolConfig;
     private final ScenarioSourceListenerImpl scenarioSourceListener;
-    private final ProxySourcesClient proxySourcesClient;
+    private final ProxySourcesClientImpl proxySourcesClient;
     private final ExecutionService executionService;
     private ThreadPoolExecutor threadPoolExecutor;
     private static  int proxyConfigHolderIndex = 0;
 
     public ParallelFlowExecutor(ScenarioSourceListenerImpl scenarioSourceListener,
-                                ProxySourcesClient proxySourcesClient,
+                                ProxySourcesClientImpl proxySourcesClient,
                                 ExecutionService executionService) {
         threadPoolConfig = readAppProperties();
         this.scenarioSourceListener = scenarioSourceListener;

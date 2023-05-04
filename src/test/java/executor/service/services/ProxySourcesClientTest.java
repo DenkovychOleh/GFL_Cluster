@@ -9,10 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
-class ProxySourcesClientTest {
-    private final ProxySourcesClient proxySourcesClient = new ProxySourcesClient();
-    private ArrayList<ProxyConfigHolder> proxyConfigHolders;
+public class ProxySourcesClientTest {
+    private final ProxySourcesClientImpl proxySourcesClient = new ProxySourcesClientImpl();
+    private List<ProxyConfigHolder> proxyConfigHolders;
 
 
     @BeforeEach
@@ -34,20 +35,20 @@ class ProxySourcesClientTest {
     @Test
     public void testReadFileAndDeserialize(){
 
-        ArrayList<ProxyCredentials> proxyCredentialsArrayList = new ArrayList<>();
+        List<ProxyCredentials> proxyCredentialsArrayList = new ArrayList<>();
 
         proxyCredentialsArrayList.add(0, new ProxyCredentials("user1", "pass1"));
         proxyCredentialsArrayList.add(1, new ProxyCredentials("user2", "pass2"));
         proxyCredentialsArrayList.add(2, new ProxyCredentials("user3", "pass3"));
         proxyCredentialsArrayList.add(3, new ProxyCredentials("user4", "pass4"));
 
-        ArrayList<ProxyNetworkConfig> proxyNetworkConfigArrayList = new ArrayList<>();
+        List<ProxyNetworkConfig> proxyNetworkConfigArrayList = new ArrayList<>();
 
         proxyNetworkConfigArrayList.add(0, new ProxyNetworkConfig("host1", 8080));
         proxyNetworkConfigArrayList.add(1, new ProxyNetworkConfig("host2", 8088));
         proxyNetworkConfigArrayList.add(2, new ProxyNetworkConfig("host3", 8089));
 
-        ArrayList <ProxyConfigHolder> expectedList = new ArrayList<>();
+        List <ProxyConfigHolder> expectedList = new ArrayList<>();
         for (ProxyNetworkConfig networkConfig : proxyNetworkConfigArrayList) {
             for (ProxyCredentials credentials : proxyCredentialsArrayList) {
                 expectedList.add(
