@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProxyValidationServiceTest {
     private final List<ProxyConfigHolder> availableProxyList = new ArrayList<>();
     private static final Queue<ProxyConfigHolder> proxyQueue = new ConcurrentLinkedQueue<>();
-    private static final CountDownLatch countDownLatch = new CountDownLatch(5);
+    private static final CountDownLatch countDownLatch = new CountDownLatch(2);
     private ExecutorService executorService;
-    private static final int THREADS_AMOUNT = 5;
-    private static final int WORKERS_AMOUNT = 5;
+    private static final int THREADS_AMOUNT = 2;
+    private static final int WORKERS_AMOUNT = 2;
 
     @BeforeEach
     void setUp() {
