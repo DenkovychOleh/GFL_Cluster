@@ -2,8 +2,10 @@ package executor.service.services.validator;
 
 import executor.service.model.ProxyNetworkConfig;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.net.*;
+
 @Service
 public class ProxyValidationService {
     public boolean proxyValidate(ProxyNetworkConfig proxyConfig) {
@@ -22,3 +24,4 @@ public class ProxyValidationService {
         return false;
     }
 }
+
